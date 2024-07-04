@@ -37,23 +37,6 @@ struct BookView: View {
         
         return targetDate
     }
-    // Сохранение новых данных в статистику книги
-    private func saveNewWords() {
-        guard let context = book.managedObjectContext else {
-            print("No managed object context found.")
-            return
-        }
-        guard let wordsCount = Int32(words), let hoursCount = Int32(hours) else {
-            print("Invalid input.")
-            return
-        }
-        book.addDailyStats(date: Date(), words: wordsCount, hours: hoursCount, place: place, mood: mood, context: context)
-        do {
-            try context.save()
-        } catch {
-            print("Failed to save context: \(error)")
-        }
-    }
     // MARK: - Body
     var body: some View {
         ZStack {
@@ -155,8 +138,7 @@ struct BookView: View {
                     .multilineTextAlignment(.center)
                 
                 if let targetDate = calculateTargetDate() {
-                    let endDate = book.endDate // Предположим, что у вас есть свойство endDate у книги
-                    
+                    let endDate = book.endDate
                     Text("\(targetDate, formatter: BookViewModel.shared.datebookFormatter)")
                         .padding()
                         .foregroundColor(targetDate <= endDate! ? .green1 : .red1)
@@ -216,7 +198,7 @@ struct BookView: View {
                         showAddWordsPopover = false
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     }
-                AddWordsPopover(showAddWordsPopover: $showAddWordsPopover, words: $words, hours: $hours, place: $place, mood: $mood)
+                    AddWordsPopover(book: book, showAddWordsPopover: $showAddWordsPopover)
                     .frame(width: 380, height: 380)
                     .background(Color.white)
                     .cornerRadius(25)

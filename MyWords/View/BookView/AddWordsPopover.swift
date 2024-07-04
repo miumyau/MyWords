@@ -1,11 +1,14 @@
 import SwiftUI
 struct AddWordsPopover: View {
     // MARK: - Properties
+    @ObservedObject var book: Book // Наблюдаемый объект класса Book
+    @Environment(\.presentationMode) var presentationMode // Режим отображения
+    @Environment(\.managedObjectContext) private var viewContext // Контекст управляемых объектов CoreData
     @Binding var showAddWordsPopover: Bool // Показывать ли всплывающее окно добавления слов
-    @Binding var words: String // Введенное количество слов
-    @Binding var hours: String // Введенное количество часов работы
-    @Binding var place: String // Введенное место работы
-    @Binding var mood: String // Выбранное настроение
+    @State private var words: String = "" // Введенное количество слов
+    @State private var hours: String = "" // Введенное количество часов
+    @State private var place: String = "" // Введенное место работы
+    @State private var mood: String = "🤩" // Выбранное настроение
     @State private var showEmojiSelection = false // Показывать ли меню выбора эмодзи
     //MARK: - Functions
     // Очистка полей
@@ -112,6 +115,7 @@ struct AddWordsPopover: View {
                 Spacer()
                 Button(action: {
                     // Вызов функции сохранения данных
+                    saveNewWords()
                     resetStatsFields()
                     showAddWordsPopover = false
                 }) {
@@ -131,7 +135,28 @@ struct AddWordsPopover: View {
         .cornerRadius(25)
         .shadow(radius: 10)
     }
-}
+    // Сохранение новых данных в статистику книги
+        private func saveNewWords() {
+            guard let context = book.managedObjectContext else {
+                print("No managed object context found.")
+                return
+            }
+            
+            guard let wordsCount = Int32(words), let hoursCount = Int32(hours) else {
+                print("Invalid input.")
+                return
+            }
+            
+            book.addDailyStats(date: Date(), words: wordsCount, hours: hoursCount, place: place, mood: mood, context: context)
+            
+            do {
+                try context.save()
+            } catch {
+                print("Failed to save context: \(error)")
+            }
+        }
+    }
+
 
 
 

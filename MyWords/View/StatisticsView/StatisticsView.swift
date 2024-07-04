@@ -4,7 +4,6 @@ struct StatisticsView: View {
     @ObservedObject var book: Book // Наблюдаемый объект класса Book для отображения статистики
     @Environment(\.managedObjectContext) private var viewContext // Контекст управляемых объектов CoreData
     @Environment(\.presentationMode) var presentationMode // Режим отображения
-    
     var body: some View {
         VStack {
             List {

@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 extension DailyStats {
-    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<DailyStats> {
         return NSFetchRequest<DailyStats>(entityName: "DailyStats")
     }

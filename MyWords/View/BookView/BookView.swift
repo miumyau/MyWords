@@ -22,21 +22,7 @@ struct BookView: View {
         mood = "🤩"
         date = Date()
     }
-    // Расчет даты завершения в зависимости от текущего прогресса
-    func calculateTargetDate() -> Date? {
-        guard let startDate = book.startDate else {
-            return nil
-        }
-        let alldays = book.alldays
-        // Проверка на нулевое значение
-        guard alldays != 0 else {
-            return nil
-        }
-        let numberOfDays = book.readywords / alldays
-        let targetDate = Calendar.current.date(byAdding: .day, value: Int(numberOfDays), to: startDate)!
-        
-        return targetDate
-    }
+    
     // MARK: - Body
     var body: some View {
         ZStack {
@@ -137,7 +123,7 @@ struct BookView: View {
                     .font(.custom("MontserratAlternates-Regular", size: 20))
                     .multilineTextAlignment(.center)
                 
-                if let targetDate = calculateTargetDate() {
+                if let targetDate = book.calculateTargetDate() {
                     let endDate = book.endDate
                     Text("\(targetDate, formatter: BookViewModel.shared.datebookFormatter)")
                         .padding()
@@ -198,7 +184,7 @@ struct BookView: View {
                         showAddWordsPopover = false
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     }
-                    AddWordsPopover(book: book, showAddWordsPopover: $showAddWordsPopover)
+                AddWordsPopover(book: book, showAddWordsPopover: $showAddWordsPopover)
                     .frame(width: 380, height: 380)
                     .background(Color.white)
                     .cornerRadius(25)

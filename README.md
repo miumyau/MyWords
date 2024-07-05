@@ -38,7 +38,43 @@ MyWords -  приложение для писателей, позволяюще�
 - Запустите проект в симуляторе или на устройстве.
 
 ## Скриншоты
-
+<table>
+  <tr>
+    <td align="center">
+      <img src="MyWords/Screens/IMG_5211.PNG?raw=true" alt="Screenshot 1" width="300">
+      <p>Экран загрузки</p>
+    </td>
+    <td align="center">
+      <img src="MyWords/Screens/IMG_5218.PNG?raw=true" alt="Screenshot 2" width="300">
+      <p>Главный экран</p>
+    </td>
+    <td align="center">
+      <img src="MyWords/Screens/IMG_5219.PNG?raw=true" alt="Screenshot 3" width="300">
+      <p>Добавление новой книги</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="MyWords/Screens/IMG_5213.PNG?raw=true" alt="Screenshot 4" width="300">
+      <p>Информация о книге</p>
+    </td>
+    <td align="center">
+      <img src="MyWords/Screens/IMG_5220.PNG?raw=true" alt="Screenshot 5" width="300">
+      <p>Уведомления</p>
+    </td>
+    <td align="center">
+      <img src="MyWords/Screens/IMG_5212.PNG?raw=true" alt="Screenshot 6" width="300">
+      <p>Фиксация написанных слов</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="MyWords/Screens/IMG_5215.PNG?raw=true" alt="Screenshot 7" width="300">
+      <p>История</p>
+    </td>
+    <!-- Продолжайте добавлять ячейки для дополнительных изображений -->
+  </tr>
+</table>
 
 ## Контакты
 - Автор: Елизавета Авдеенко

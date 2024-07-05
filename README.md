@@ -76,7 +76,12 @@ MyWords -  приложение для писателей, позволяюще�
   </tr>
 </table>
 
+## Ссылка на макет Figma
+
+- https://www.figma.com/design/RZjAfboQptMcelKtKwaX7B/MyWords?node-id=0-1&t=4pgHvMbUERN4EUaF-1
+  
 ## Контакты
+
 - Автор: Елизавета Авдеенко
 - Электронная почта: elliss.avd@gmail.com
 - tg: eliss_av
